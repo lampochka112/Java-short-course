@@ -155,11 +155,15 @@ java
 module my.module {
     requires com.google.gson;
 }
+
 🔥 Популярные библиотеки и их добавление
 Библиотека	Maven (pom.xml)	Gradle (build.gradle)
 Gson	com.google.code.gson:gson:2.10.1	implementation 'com.google.code.gson:gson:2.10.1'
 JUnit 5	org.junit.jupiter:junit-jupiter:5.9.3	testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
 Lombok	org.projectlombok:lombok:1.18.28	compileOnly 'org.projectlombok:lombok:1.18.28'
+
+
+
 ❓ Частые проблемы
 Ошибка ClassNotFoundException:
 

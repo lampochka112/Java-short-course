@@ -90,8 +90,83 @@ javac -version
 👨‍💻 Автор и контакты
 Автор: lampochka112
 
-Email: daniilgolsov232@gmail.com
+Email: daniilgolosov232@gmail.com
 
 
 💬 Ваши предложения и вопросы приветствуются!
 Если нашли ошибку или хотите добавить тему, создайте Issue или форкните репозиторий.
+
+
+
+📚 Как подключать библиотеки в Java
+1. Ручное подключение (JAR-файлы)
+Шаги:
+Скачайте JAR-файл библиотеки (например, с Maven Repository).
+
+В IDE (IntelliJ IDEA/Eclipse):
+
+IntelliJ:
+File → Project Structure → Modules → Dependencies → + → JARs...
+
+Eclipse:
+ПКМ на проекте → Build Path → Configure Build Path → Add External JARs...
+
+Пример с библиотекой Gson (для работы с JSON):
+java
+import com.google.gson.Gson;
+
+public class JsonExample {
+    public static void main(String[] args) {
+        Gson gson = new Gson();
+        String json = gson.toJson("Hello, Java!");
+        System.out.println(json); // Выведет: "Hello, Java!"
+    }
+}
+2. Использование Maven
+Шаги:
+Добавь зависимость в pom.xml:
+
+xml
+<dependencies>
+    <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.10.1</version>
+    </dependency>
+</dependencies>
+Обнови проект (IDE сделает это автоматически или через mvn install).
+
+3. Использование Gradle
+Шаги:
+Добавь зависимость в build.gradle:
+
+groovy
+dependencies {
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
+Пересобери проект:
+
+bash
+./gradlew build
+4. Современный способ: JPMS (Java 9+)
+Если используешь модули, добавь в module-info.java:
+
+java
+module my.module {
+    requires com.google.gson;
+}
+🔥 Популярные библиотеки и их добавление
+Библиотека	Maven (pom.xml)	Gradle (build.gradle)
+Gson	com.google.code.gson:gson:2.10.1	implementation 'com.google.code.gson:gson:2.10.1'
+JUnit 5	org.junit.jupiter:junit-jupiter:5.9.3	testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+Lombok	org.projectlombok:lombok:1.18.28	compileOnly 'org.projectlombok:lombok:1.18.28'
+❓ Частые проблемы
+Ошибка ClassNotFoundException:
+
+Проверь, что библиотека добавлена в зависимости.
+
+Для Maven/Gradle: выполни mvn clean install или gradle build.
+
+Конфликт версий:
+
+Убедись, что все зависимости совместимы (например, через mvn dependency:tree).
